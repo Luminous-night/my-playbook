@@ -6,13 +6,13 @@
   tasks:
     - name: Ensure Apache is installed
       apt:
-        name: apache2
+        name: httpd
         state: present
         update_cache: yes
 
     - name: Ensure Apache is running
       service:
-        name: apache2
+        name: httpd
         state: started
         enabled: yes
 
