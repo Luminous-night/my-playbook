@@ -4,15 +4,15 @@
   become: yes
 
   tasks:
-    - name: Ensure Apache is installed
-      apt:
+    - name: Ensure Apache (httpd) is installed
+      dnf:  # Using dnf as package manager for Oracle Linux 9
         name: httpd
         state: present
         update_cache: yes
 
     - name: Ensure Apache is running
       service:
-        name: httpd
+        name: httpd  # Apache service is named 'httpd' on Oracle Linux 9
         state: started
         enabled: yes
 
@@ -32,6 +32,6 @@
           </body>
           </html>
         dest: /var/www/html/index.html
-        owner: www-data
-        group: www-data
+        owner: apache   # Ensure the owner is 'apache' on Oracle Linux 9
+        group: apache   # Ensure the group is 'apache' on Oracle Linux 9
         mode: '0644'
